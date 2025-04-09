@@ -1,201 +1,152 @@
-<?php $valor = $_GET['numero'];
-function soma($som){
-  if($som==""){
-    echo"valor vazio";
-  }else{
+<?php
+if(isset($_GET['number'])){
+$resu = $_GET['number'];
+}
+$verifica =$_GET['number'] ==""?true:false;
+
+function soma($valor){
+      for ($i = 1; $i <= 10; $i++) {
+         echo "$valor + $i = " . ($valor + $i) . "<br>";
+      }
+}
+function sub($valor){
     for ($i = 1; $i <= 10; $i++) {
-        echo "$som + $i = " . ($som + $i) . "<br>";
-    }
+        echo "$valor - $i = " . ($valor- $i) . "<br>";
   }
 }
-function sub($sub){
-  if($sub ==""){
-  echo"valor vazio";
-  }else{
+function subs($valor){
     for ($i = 1; $i <= 10; $i++) {
-        echo "$sub - $i = " . ($sub - $i) . "<br>";
-   }
-  }
-}
-function subs($subs){
-  if($subs==""){
-    echo "valor vazio";
-  }
-    for ($i = 1; $i <= 10; $i++) {
-        echo "$i - $subs = " . ($i - $subs) . "<br>";
+        echo "$i - $valor= " . ($i - $valor) . "<br>";
     }
 }
-function mult($mult){
-  if($mult ==""){
-    echo"valor vazio";
-  }else{
+function mult($valor){
     for ($i = 1; $i <= 10; $i++) {
-        echo "$mult X $i = " . ($mult * $i) . "<br>";
-    }
+        echo "$valor X $i = " . ($valor * $i) . "<br>";
   }
 }
-function div($div){
-  if($div == ""){
-    echo "valor vazio";
-  }else{
-  if($div!=0){
+function div($valor){
+  if($valor!=0){
     for ($i = 1; $i <= 10; $i++) {
-        echo "$i / $div= " . round($i / $div,2) . "<br>";
+        echo "$i / $valor= " . round($i / $valor,2) . "<br>";
       }
   }else{
     echo"nao e divisivel por 0";
     }
   }
-}
 
-function divs($divs){
-  if($divs ==""){
-    echo"valor vazio";
-  }else{
+
+function divs($valor){
     for ($i = 1; $i <= 10; $i++) {
-        echo "$divs / $i= " . round($divs / $i,2) . "<br>";
-    }
+        echo "$valor / $i= " . round($valor/ $i,2) . "<br>";
   }
 } 
-function raizs($rai){
-  $r = $rai/2;
+function raizs($raizs){
+  $r = $raizs/2;
   do{
-    $rais = $r;
-    $r = ($r * $r + $rai)/(2 * $r);
-  }while(-($r - $rais)>0.0001);
+    $raiz = $r;
+    $r = ($r * $r + $raizs)/(2 * $r);
+  }while(-($r - $raiz)>0.0001);
   return round($r,3);
 }
-function raiz($raiz){
-  if($raiz == ""){
-    echo "valor vazio";
-  }else{
-    if($raiz != 0){
-      if($raiz >=1 && $raiz <= 3){
-      echo "1 a 3 não são exatas: ".raizs($raiz);
+function raiz($valor){
+    if($valor != 0){
+      if($valor>=1 && $valor <= 3){
+      echo "1 a 3 não são exatas: ".raizs($valor);
       }else{
-        echo raizs($raiz);
+        echo raizs($valor);
       }
     }else{
       echo "não e posivel fazer a raiz por 0";
     }
-  }
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <title>Matematica</title>
-    <style>
-        body,.forms, .form, .button,h3,.lado {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        body {
-            flex-direction: column;
-            background: black;
-            width: 100%;
-        }
-        h1, .form {
-           /* flex-direction: row;*/
-            padding: 0 25% 0 25%;
-        }
-        .forms {
-            margin: 0 0 0 10px;
-        }
-        h1,label,.cor,.buttons,.button,h3, p {
-            font-size: 35px;
-            padding: 5px;
-            margin: 5px;
-        }
-        .cor {
-            display: none;
-        }
-        label, .cor {
-            user-select: none;
-            background: blue;
-        }
+  <meta charset="UTF-8">
+  <title>Matemática</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+    body { background: #111; color: #fff; padding: 50px 20px; text-align: center; }
+    h1 { font-size: 3rem; margin-bottom: 30px; border-bottom: 3px solid #fff; padding-bottom: 10px; text-transform: uppercase; }
+    .form { background: #222; padding: 30px; border-radius: 12px; box-shadow: 0 0 20px #000; display: inline-block; margin-bottom: 40px; }
+    .forms { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+    .cor { display: none; }
+    label { background: #444; color: #fff; padding: 12px 24px; border-radius: 8px; cursor: pointer; transition: 0.3s;font-size: 2rem;}
+    .cor:checked + label { background: #fff; color: #000; border: 2px solid #fff; }
+    .button, .buttons { padding: 12px 30px; border-radius: 8px; font-size: 1.5rem; margin-top: 15px; cursor: pointer; display: inline-block; }
+    .button { background: #fff; color: #000; border: none; }
+    .buttons { background: transparent; color: #fff; border: 2px solid #fff; text-decoration: none; margin-left: 10px; }
+    .buttons:hover { background: #fff; color: #000; }
+    .lado { display: flex;flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .lado div { background: #333; border: 2px solid #fff; padding: 20px; border-radius: 10px; min-width: 240px; min-height: 180px;flex-direction: column; align-items: flex-start; justify-content: center;text-align: left; }
+    .lado h3{ align-items: center; text-align: center;justify-content: flex-start;}
+    .lado .top{ align-items: center; text-align: center;justify-content: flex-start;}
+    h3 { font-size: 2rem; margin-bottom: 10px; }
+    p { font-size: 2rem; white-space: pre-line; }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+    }
 
-        h1, h3, p, label, .cor, .buttons {
-            color: white;
-        }
-        .cor:checked+label, .buttons {
-            background: black;
-            border: 2px solid white;
-        }
-        .button {
-            color: black;
-            background: white;
-        }
-        .buttons, .button {
-            border-radius: 5px;
-            border: none;
-        }
-        a {
-            text-decoration: none;
-        }
-        h3,p {
-            border: 2px solid white;
-        }
-        h3, .form {
-            background: gray;
-        }
-    </style>
+    .form {
+      padding: 20px;
+      width: 100%;
+    }
+
+    label {
+      padding: 10px 18px;
+    }
+
+    .button,
+    .buttons {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+    }
+
+    p,label {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+
+  </style>
 </head>
 <body>
-    <h1><u>matematica basica</u></h1>
-    <div class="form">
-        <form method="POST" action="" class="forms">
-            <input type="checkbox" id="soma" name="soma" class="cor">
-            <label for="soma">soma</label>
-            <input type="checkbox" id="sub_ver" name="sub_ver" class="cor">
-            <label for="sub_ver">subt_ver</label>
-            <input type="checkbox" id="sub_inv" name="sub_inv" class="cor">
-            <label for="sub_inv">subt_inv</label>
-            <input type="checkbox" id="mult" name="mult" class="cor">
-            <label for="mult">multiplicação</label>
-            <input type="checkbox" id="divi_ver" name="divi_ver" class="cor">
-            <label for="divi_ver">divi_ver</label>
-            <input type="checkbox" id="divi_inv" name="divi_inv" class="cor">
-            <label for="divi_inv">divi_inv</label>
-            <input type="checkbox" id="raiz" name="raiz" class="cor">
-            <label for="raiz">raiz</label>
-            <input type="submit" value="Enter" name="Enter" class="button">
-        </form>
-        <a href="matema.php"><input type="submit" value="sair" name="sair" class="buttons"></a>
-    </div>
-    <div class="lado">
-        <?php 
-            if (isset($_POST['soma'])) { ?><div>
-                    <h3><u>soma</u></h3>
-                    <p><?php echo soma($valor); ?></p>
-                </div><?php }
-                    if (isset($_POST['sub_ver'])) { ?><div>
-                    <h3><u>subtração_inverso</u></h3>
-                    <p><?php echo sub($valor); ?></p>
-                </div><?php }
-                    if (isset($_POST['sub_inv'])) { ?><div>
-                    <h3><u>subtração_inverso</u></h3>
-                    <p><?php echo subs($valor); ?></p>
-                </div><?php }
-                    if (isset($_POST['mult'])) { ?><div>
-                    <h3><u>multiplicação</u></h3>
-                    <p><?php echo mult($valor); ?></p>
-                </div><?php }
-                    if (isset($_POST['divi_ver'])){ 
-                    ?> 
-                          <div>
-                             <h3><u>divisão-verso</u></h3>
-                             <p><?php echo div($valor); ?></p>
-                          </div>
-                    <?php } if (isset($_POST['divi_inv'])) { ?>
-                       <div>
-                        <h3><u>divisão-inverso</u></h3>
-                        <p><?php echo divs($valor); ?></p>
-                    </div><?php } 
-                    if(isset($_POST['raiz'])){?>
-                    <div>
-                        <h3><u>raiz</u></h3>
-                        <p><?php echo raiz($valor); ?></p>
-                    </div><?php } ?>
+  <h1><u>basic math</u></h1>
+  <?php
+    if(!$verifica){
+        ?>
+  <div class="form"> 
+    <form method="POST" class="forms">
+    <?php
+        $ops = ["soma" => "Soma", "sub_ver" => "Subt. Ver.", "sub_inv" => "Subt. Inv.","divi_ver" => "Div. Ver.", "divi_inv" => "Div. Inv.", "mult" => "Multiplicação",  "raiz" => "Raiz"];
+          foreach ($ops as $id => $label) {
+            echo "<input type='checkbox' id='$id' name='$id' class='cor'><label for='$id'>$label</label>";
+          }
+        ?>
+    <input type="submit" name="Enter" value="Start" class="button">
+    </form>
+    <a href="matema.php" class="buttons" >Return</a> 
+  </div>
+ <?php }?>
+  <div class="lado">
+    <?php 
+    if($verifica){
+    echo "<div class='top'><h3><u>you don't add valor</u></h3> <a href='matema.php' class='buttons'>Return</a>";
+}
+      if (isset($_POST['soma'])){ echo "<div><h3><u>Soma</u></h3><p>"; soma($resu); echo "</p></div>";}
+      if (isset($_POST['sub_ver'])){ echo "<div><h3><u>Subtração</u></h3><p>"; sub($resu); echo "</p></div>";}
+      if (isset($_POST['sub_inv'])) {echo "<div><h3><u>Subtração Inversa</u></h3><p>"; subs($resu); echo "</p></div>";}
+      if (isset($_POST['mult'])) {echo "<div><h3><u>Multiplicação</u></h3><p>"; mult($resu); echo "</p></div>";}
+      if (isset($_POST['divi_ver'])) {echo "<div><h3><u>Divisão Verso</u></h3><p>"; div($resu); echo "</p></div>";}
+      if (isset($_POST['divi_inv'])) {echo "<div ><h3><u>Divisão Inversa</u></h3><p>"; divs($resu); echo "</p></div>";}
+      if (isset($_POST['raiz'])) {echo "<div class='top'><h3><u>Raiz</u></h3><p>"; raiz($resu); echo "</p></div>";}
+    ?>
+  </div>
 </body>
 </html>
